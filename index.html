@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IWP DA</title>
+
+  <link rel="stylesheet" href="DAstyle.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("#hidetext").hide(1000);
+  });
+  $("#show").click(function(){
+    $("#hidetext").show(1000);
+  });
+  $("#toggle").click(function(){
+    $("#toggletext").toggle();
+  });
+  $("#slideup").click(function(){
+  $("#slidetext").slideUp();
+  });
+  $("#slidedown").click(function(){
+  $("#slidetext").slideDown();
+  });
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow");
+  });
+  $("#fadeout").click(function(){
+  $("#square").fadeOut();
+  });
+  $("#fadein").click(function(){
+  $("#square").fadeIn();
+  });
+  $("#fadeto").click(function(){
+    $("#div1").fadeTo("slow", 0.2);
+    $("#div2").fadeTo("slow", 0.4);
+    $("#div3").fadeTo("slow", 0.6);
+  });
+  $("#fadetoggle").click(function(){
+    $("#d1").fadeToggle();
+    $("#d2").fadeToggle("slow");
+    $("#d3").fadeToggle(4000);
+  });
+  $("#animate").click(function(){
+    var div = $("#animatebox");
+    div.animate({height: 60}, "slow");
+    div.animate({width: 60}, "slow");
+    $("span").text(div.queue().length);   
+  });
+  $("#queue").click(function(){
+    var div = $("#queuebox");
+    div.animate({height: 60}, "slow");
+    div.animate({width: 60}, "slow");
+    div.animate({height: 40}, "slow");
+    div.animate({width: 40}, "slow");
+    $("span").text(div.queue().length);   
+  });
+  $("#dequeue").click(function(){
+    var div = $("#dequeuebox");  
+    div.animate({height: 60}, "slow");
+    div.animate({width: 60}, "slow");
+    div.queue(function(){
+      div.animate({width: 100}, "slow");
+      div.dequeue();
+    });
+    div.animate({height: 40}, "slow");
+    div.animate({width: 40}, "slow");
+  });
+  $("#startqueue").click(function(){
+    $("#clearbox").animate({height: 60}, "slow");
+    $("#clearbox").animate({width: 60}, "slow");
+    $("#clearbox").animate({height: 40}, "slow");
+    $("#clearbox").animate({width: 40}, "slow");
+  });
+  $("#clearqueue").click(function(){
+    $("#clearbox").clearQueue();
+  });
+  $("#delay").click(function(){
+    $("#delay1").delay(800).fadeIn();
+    $("#delay2").delay(2000).fadeIn();
+    $("#delay3").delay(3000).fadeIn();
+  });
+  $("#startstop").click(function(){
+    $("#stopbox").animate({width: 250}, 2000);
+    $("#stopbox").animate({height: 60}, 1000);
+  });
+  $("#stop").click(function(){
+    $("#stopbox").stop();
+  });
+  $("#startfinish").click(function(){
+    $("#finishbox").animate({width: 250}, 2000);
+    $("#finishbox").animate({height: 60}, 1000);
+  });
+  $("#finish").click(function(){
+    $("#finishbox").finish();
+  });
+});
+</script>
+</head>
+
+<body>
+<h1> IWP Digital Assignment </h1>
+<h1> jQuery Effects </h1>
+<h3> Made by, Ritika Kayal, 18BCE2518 </h3>
+
+
+<br>
+<div id="grid">
+
+  <div> <h3> 1. Hide and Show</h3> 
+  <p id="hidetext">This Text will disappear upon clicking the Hide Button.</p>
+  <button id="hide">Hide</button> <br><br>
+  To make the Text reappear, click the Show button. <br><br>
+  <button id="show">Show</button>
+  </div>
+
+  <div> <h3> 2. Toggle </h3> 
+  <p id="toggletext">This text will be hidden and shown alternatively by clicking the toggle button above.</p>
+  <button id="toggle">Toggle</button>
+  </div>
+
+  <div> <h3> 3. Slide Down and Slide Up </h3> 
+  <p id="slidetext" class="flip">This Text will slide up upon clicking the Slide Up Button.</p>
+  <button id="slideup">Slide Up</button> <button id="slidedown">Slide Down</button> <br><br>
+  To make the Text reappear by sliding down, click the Slide Down. <br><br>
+  </div>
+
+  <div> <h3> 4. Slide Toggle </h3> 
+  <div id="flip">Click to toggle slide the panel down or up</div>
+  <div id="panel">Successfully, toggled!</div> </div>
+
+  <div> <h3> 5. Fade In and Fade Out </h3> 
+  <div class="square" id="square"></div>
+  <p>The Fade Out button will fade the square out of display. To make the Square reappear click the Fade In button </p>
+  <button id="fadeout">Fade Out</button> <button id="fadein">Fade In</button><br>
+  </div>
+
+  <div> <h3> 6. Fade To </h3> 
+  <div id="div1" class="square" style="background-color:lightgreen;"></div>
+  <div id="div2" class="square" style="background-color:pink;"></div>
+  <div id="div3" class="square" style="background-color:orange;"></div> <br> <br>
+  The Fade To button fades each square to 0.2, 0.4, 0.6 opacity respectively.<br><br>
+  <button id="fadeto">Click to fade boxes</button>
+  </div>
+
+  <div> <h3> 7. Fade Toggle </h3> 
+  <div id="d1" class="square" style="background-color:lightgreen;"></div>
+  <div id="d2" class="square" style="background-color:pink;"></div>
+  <div id="d3" class="square" style="background-color:orange;"></div> 
+  <p>The button Fade toggle shows the function with with different none, slow and 4000 parameters respectively.</p>
+  <button id="fadetoggle">Fade Toggle</button>
+  </div>
+
+  <div> <h3> 8. Animate</h3> 
+  <div id="animatebox" class="square" style="background-color:lightgreen;"></div> <br><br>
+  <button id="animate">Animate</button> <br><br>
+  It performs custom animations of css properties. All the following examples will make use of animate.
+  </div>
+
+  <div> <h3> 9. Queue</h3> 
+  <div id="queuebox" class="square" style="background-color:pink;"></div> <br><br>
+  <button id="queue">Start</button> <br><br>
+  It displays the number of functions waiting to be executed on the given element. The queue length is: <span></span>
+  </div>
+
+  <div> <h3> 10. Dequeue</h3> 
+  <div id="dequeuebox" class="square" style="background-color:orange;"></div> 
+  <p>The dequeue() method removes the next function from the queue. So here the 'width to 100' is removed and executed in the end. </p>
+  <p><button id="dequeue">Start</button></p>
+  </div>
+
+  <div> <h3> 11. Clear Queue </h3> 
+  <div id="clearbox" class="square" style="background-color:lightgreen;"></div>
+  <p>Clear Queue button clears the remaining operations if clicked before the completion of all the functions in the Queue. </p>
+  <button id="startqueue">Start Queue</button>
+  <button id="clearqueue">Clear Queue</button>
+  </div>
+
+  <div> <h3> 12. Delay</h3> 
+  <div id="delay1" class="square" style="background-color:lightgreen; display: none;"></div>
+  <div id="delay2" class="square" style="background-color:pink; display: none;"></div>
+  <div id="delay3" class="square" style="background-color:orange; display: none;"></div> 
+  <p>Delay allows us to set different speed values for operations in the queue. Here each box fades in with 800, 1000 and 2000 delay respectively.</p>
+  <button id="delay">Start</button>
+  <br><br>
+  </div>
+
+  <div> <h3> 13. Stop </h3> 
+  <div id="stopbox" class="square" style="background-color:pink;"></div>
+  <p>Stop button stops the currently running animation. Clicking Start again resumes the queue.</p>
+  <button id="startstop">Start</button>
+  <button id="stop">Stop</button>
+  </div>
+
+  <div> <h3> 14. Finish </h3> 
+  <div id="finishbox" class="square" style="background-color:orange;"></div>
+  <p>Finish button stopps the current animation and removes all the queued animations.</p>
+  <button id="startfinish">Start</button>
+  <button id="finish">Finish</button>
+  </div>
+</div>
+
+<!-- For the background animation -->
+<ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+<ul class="circles c2">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+
+
+</body>
+</html>
